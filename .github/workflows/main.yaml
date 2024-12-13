@@ -9,7 +9,8 @@ jobs:
     permissions:
       contents: write
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN2: ${{ secrets.DISPATCH }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,9 +22,9 @@ jobs:
             curl -v -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Authorization: Bearer ${GITHUB_TOKEN2}" \
             --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
-            https://api.github.com/repos/${{ matrix.repo }}/dispatches
+            https://api.github.com/repos/${{ ma1trix.repo }}/dispatches
 
             gh api \
              --method POST \
