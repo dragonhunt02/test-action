@@ -4,14 +4,14 @@ on:
     branches: [main]
 
 permissions:
-    pull-requests: write
-    contents: write
+  contents: write
 
 jobs:
   dispatch:
     name: Dispatch
     env:
       GITHUB_TOKEN1: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_TOKEN2: ${{ secrets.DISPATCH }}
     runs-on: ubuntu-latest
     strategy:
@@ -28,11 +28,13 @@ jobs:
             --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
             https://api.github.com/repos/${{ matrix.repo }}/dispatches
 
-            URL=' \
+            echo "Start github gh..."
+
+            #URL=' \
             gh api \
              --method POST \
              -H "Accept: application/vnd.github+json" \
              /repos/${{ matrix.repo }}/dispatches \
               -f "event_type=on-demand-test" -F "client_payload[unit]=false" \
-              -F "client_payload[integration]=true" \
-            '
+              -F "client_payload[integration]=true" 
+            # '
