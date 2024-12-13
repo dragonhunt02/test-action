@@ -24,7 +24,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${GITHUB_TOKEN2}" \
             --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
-            https://api.github.com/repos/${{ ma1trix.repo }}/dispatches
+            https://api.github.com/repos/${{ matrix.repo }}/dispatches
 
             gh api \
              --method POST \
