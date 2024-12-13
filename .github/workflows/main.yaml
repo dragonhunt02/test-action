@@ -18,8 +18,9 @@ jobs:
     steps:
       - name: Dispatch to workflow 
         run: |
-            curl -H "Accept: application/vnd.github+json" \
-            -H "Authorization: token ${GITHUB_TOKEN}" \
-            --request POST \
+            curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
             --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
             https://api.github.com/repos/${{ matrix.repo }}/dispatches
