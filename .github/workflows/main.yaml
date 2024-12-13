@@ -14,7 +14,7 @@ jobs:
         repo: ['dragonhunt02/v-sekai-game']
     timeout-minutes: 5
     steps:
-      - name: Dispatch to workflows
+      - name: Dispatch to workflow
         run: |
             curl -H "Accept: application/vnd.github+json" \
             -H "Authorization: token ${GITHUB_TOKEN}" \
