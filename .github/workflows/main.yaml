@@ -22,16 +22,16 @@ jobs:
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${GITHUB_TOKEN2}" \
-            --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
+            --data '{"event_type": "build-ready", "client_payload": { "commit_sha": "bar" }}' \
             https://api.github.com/repos/${{ matrix.repo }}/dispatches
 
             echo "Start github gh..."
 
-            #URL=' \
+            URL=' \
             gh api \
              --method POST \
              -H "Accept: application/vnd.github+json" \
              /repos/${{ matrix.repo }}/dispatches \
               -f "event_type=on-demand-test" -F "client_payload[unit]=false" \
-              -F "client_payload[integration]=true" 
-            # '
+              -F "client_payload[integration]=true" \
+             '
