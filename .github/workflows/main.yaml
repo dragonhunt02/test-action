@@ -4,7 +4,8 @@ on:
     branches: [main]
 
 permissions:
-  contents: write-all
+  contents: write
+  repository-projects: write
 
 jobs:
   dispatch:
