@@ -1,0 +1,23 @@
+name: Dispatcher
+on:
+  push:
+    branches: [main]
+
+jobs:
+  dispatch:
+    name: Dispatch
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: ['dragonhunt02/v-sekai-game']
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch to workflows
+        run: |
+            curl -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            --request POST \
+            --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
+            https://api.github.com/repos/${{ matrix.repo }}/dispatches
