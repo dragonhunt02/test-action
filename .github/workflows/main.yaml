@@ -3,11 +3,6 @@ on:
   push:
     branches: [main]
 
-permissions:
-  actions: write
-  contents: write
-  repository-projects: write
-
 jobs:
   dispatch:
     name: Dispatch
@@ -26,7 +21,7 @@ jobs:
             curl -v -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${GITHUB_TOKEN1}" \
+            -H "Authorization: Bearer ${GITHUB_TOKEN2}" \
             --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
             https://api.github.com/repos/${{ matrix.repo }}/dispatches
 
