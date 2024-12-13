@@ -27,8 +27,11 @@ jobs:
             --data '{"event_type": "some_event", "client_payload": { "commit_sha": "bar" }}' \
             https://api.github.com/repos/${{ matrix.repo }}/dispatches
 
+            URL=' \
             gh api \
              --method POST \
              -H "Accept: application/vnd.github+json" \
              /repos/${{ matrix.repo }}/dispatches \
-              -f "event_type=on-demand-test" -F "client_payload[unit]=false" -F "client_payload[integration]=true"
+              -f "event_type=on-demand-test" -F "client_payload[unit]=false" \
+              -F "client_payload[integration]=true" \
+            '
