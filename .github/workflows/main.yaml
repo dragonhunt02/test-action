@@ -17,7 +17,7 @@ jobs:
         repo: ['dragonhunt02/v-sekai-game']
     timeout-minutes: 5
     steps:
-      - name: Dispatch to workflow
+      - name: Dispatch to workflow 
         run: |
             curl -v -L \
             -X POST \
